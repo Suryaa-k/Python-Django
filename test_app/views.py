@@ -1,12 +1,15 @@
 from django.http import HttpResponse
 from django.shortcuts import render
+from .models import Student
 
-# Create your views here.
+def index(request):
+    std=Student.objects.all()
+    return render(request,'index.html',{'students':std})
 
-def home(request):
-    return HttpResponse("Hi This is Home page")
-def about(request):
-    return HttpResponse("Hi This is About Page")
-def contact(request):
-    return HttpResponse("Hi This is Contact Page")
+def get_student(request,pk):
+    std=Student.objects.get(id=pk)
+    return render(request,'index.html',{'students':std})
+
+
+
 
