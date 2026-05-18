@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.forms import ModelForm
 # Create your models here.
 class Student(models.Model):
     name = models.CharField(max_length=100)
@@ -8,4 +8,9 @@ class Student(models.Model):
     marks = models.IntegerField()
     college = models.CharField(max_length=100)
     def __str__(self):
-        return self.name
+        return f"{self.name}"
+
+class StudentForm(ModelForm):
+    class Meta:
+        model = Student
+        fields = ['name', 'age', 'branch', 'marks', 'college']
